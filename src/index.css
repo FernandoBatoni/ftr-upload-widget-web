@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-displace: "Inter", "sans-serif"
+  --font-displace: "Inter",
+    "sans-serif"
 }
 
 @utility shape {
@@ -12,8 +13,33 @@
   box-shadow: "0px 0px 0px 1px rgba(0, 0, 0, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.02), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.02)";
 }
 
+@utility animate-border-custom {
+  animation: border-animation 2s linear infinite;
+}
+
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;
-  syntax: '<angle>';
+  syntax: "<angle>";
+}
+
+@keyframes border-animation {
+  from {
+    --border-angle: 0deg;
+  }
+
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@utility gradient-border-closed-progress {
+  background:
+    linear-gradient(45deg, #09090B, var(--color-zinc-900) 50%, #09090B) padding-box,
+    conic-gradient(from var(--border-angle),
+      color-mix(in srgb, var(--color-zinc-700) 48%, transparent) 80%,
+      var(--color-indigo-500) 86%,
+      var(--color-indigo-300) 90%,
+      var(--color-indigo-500) 94%,
+      color-mix(in srgb, var(--color-zinc-600) 48%, transparent)) border-box;
 }
