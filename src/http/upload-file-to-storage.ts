@@ -5,7 +5,7 @@ import type {
 import api from '../api'
 
 export async function uploadFileToStorage(
-  { file }: UploadFileToStorageParams,
+  { file, onProgress }: UploadFileToStorageParams,
   opts?: UploadFileToStorageOptions,
 ) {
   const data = new FormData()
@@ -17,6 +17,9 @@ export async function uploadFileToStorage(
       'Content-Type': 'multipart/form-data',
     },
     signal: opts?.signal,
+    onUploadProgress(progressEvent) {
+      onProgress(progressEvent.loaded)
+    },
   })
 
   return { url: response.data.url }

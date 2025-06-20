@@ -10,7 +10,7 @@ function UploadWidgetUploadList() {
     <div className='px-3 flex flex-col gap-3'>
       <span className='text-xs font-medium'>
         Uploaded files &nbsp;
-        <span className='text-zinc-400'></span>
+        <span className='text-zinc-400'>{uploads.size}</span>
       </span>
 
       {isUploadListEmpty ? (
