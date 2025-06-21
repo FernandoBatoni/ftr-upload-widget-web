@@ -5,6 +5,8 @@ export interface Upload {
   status: 'progress' | 'success' | 'error' | 'canceled'
   originalSizeInBytes: number
   uploadSizeInBytes: number
+  compressedSizeInBytes?: number
+  remoteUrl?: string
 }
 
 export interface UploadFileToStorageParams {
