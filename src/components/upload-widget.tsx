@@ -1,19 +1,20 @@
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { motion, useCycle } from 'motion/react'
+import { usePendingUploads } from '../store/uploads'
 import { UploadWidgetDropzone } from './upload-widget-dropzone'
 import { UploadWidgetHeader } from './upload-widget-header'
 import { UploadWidgetMinimizedButto } from './upload-widget-minimized-button'
 import { UploadWidgetUploadList } from './upload-widget-upload-list'
 
 function UploadWidget() {
-  const isThereAnyPendingUpload = true
+  const { isThereAnyPendingUploads } = usePendingUploads()
   const [isWidgetOpen, toggleWidgetOpen] = useCycle(false, true)
 
   return (
     <Collapsible.Root onOpenChange={() => toggleWidgetOpen()} asChild>
       <motion.div
         className='bg-zinc-900 overflow-hidden w-[360px] rounded-xl data-[state=open]:shadow-shape border border-transparent animate-border-custom data-[state=closed]:rounded-3xl data-[state=closed]:data-[progress=false]:shadow-shape data-[state=closed]:data-[progress=true]:gradient-border-closed-progress'
-        data-progress={isThereAnyPendingUpload}
+        data-progress={isThereAnyPendingUploads}
         animate={isWidgetOpen ? 'open' : 'closed'}
         variants={{
           closed: {
