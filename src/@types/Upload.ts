@@ -1,7 +1,7 @@
 export interface Upload {
   name: string
   file: File
-  abortController: AbortController
+  abortController?: AbortController
   status: 'progress' | 'success' | 'error' | 'canceled'
   originalSizeInBytes: number
   uploadSizeInBytes: number
